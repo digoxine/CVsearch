@@ -60,9 +60,8 @@ public class ResumeResource {
     @GetMapping()
     @ResponseBody
     public ResponseEntity<List<EsResume>> getMatchingResumes(
-            @RequestBody List<String> skills
+            @RequestBody MySearchRequest search
     ) throws IOException {
-        MySearchRequest search = new MySearchRequest(skills);
         return ResponseEntity.ok(resumeService.searchResume(search));
 
     }

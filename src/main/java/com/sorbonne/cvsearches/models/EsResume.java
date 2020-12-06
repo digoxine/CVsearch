@@ -18,13 +18,6 @@ import java.util.List;
 @ToString
 public class EsResume {
 
-    // just for test
-    public EsResume(Long id, String content) {
-        this.id = id;
-        System.out.println(content);
-    }
-
-
     public EsResume(
             List<String> competences,
             List<String> mails,

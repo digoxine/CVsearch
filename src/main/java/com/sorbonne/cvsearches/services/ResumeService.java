@@ -13,7 +13,6 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,11 @@ public class ResumeService {
             search.getSkills().forEach(skill -> {
                 filter.should(QueryBuilders.termQuery("competences", skill));
             });
-            filter.minimumShouldMatch(search.getMinimumMatches());
+            if (search.getMinimumMatches() != 0) {
+                filter.minimumShouldMatch(search.getMinimumMatches());
+            } else {
+                filter.minimumShouldMatch(search.getSkills().size());
+            }
         }
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder()

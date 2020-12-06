@@ -1,4 +1,9 @@
 package com.sorbonne.cvsearches.repositories;
 
-public class SkillRepository {
+import com.sorbonne.cvsearches.models.Skill;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface SkillRepository extends CrudRepository<Skill, Long> {
 }
